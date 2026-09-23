@@ -1,0 +1,185 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="Seguimiento de objetivos SOIN GROW 2026 de Luis Emmanuel Alfaro" />
+    <title>SOIN GROW 2026 | Luis Emmanuel Alfaro</title>
+    <style>
+      :root {
+        --ink: #102a43;
+        --muted: #52606d;
+        --line: #d9e2ec;
+        --paper: #ffffff;
+        --canvas: #eef5f7;
+        --brand: #0b4f6c;
+        --brand-2: #167a8b;
+        --mint: #dff5ef;
+        --amber: #fff2cc;
+        --coral: #fde8e4;
+        --sky: #e3f2fd;
+      }
+      * { box-sizing: border-box; }
+      html { scroll-behavior: smooth; }
+      body {
+        margin: 0;
+        color: var(--ink);
+        background: var(--canvas);
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 16px;
+        line-height: 1.55;
+      }
+      a { color: #076b83; font-weight: 700; text-underline-offset: 3px; }
+      .page { max-width: 1120px; margin: 0 auto; padding: 32px 24px 64px; }
+      .hero {
+        padding: 42px 44px 34px;
+        border-radius: 22px 22px 0 0;
+        color: white;
+        background: linear-gradient(125deg, #063b55, #0a6274 58%, #168497);
+      }
+      .eyebrow { margin: 0 0 10px; color: #bcebf0; font-size: .8rem; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; }
+      h1 { margin: 0; font-size: clamp(2rem, 5vw, 3.8rem); line-height: 1.05; letter-spacing: -.04em; }
+      .subtitle { max-width: 720px; margin: 16px 0 0; color: #e5f6f7; font-size: 1.1rem; }
+      .hero-meta { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 26px; }
+      .pill { display: inline-flex; align-items: center; min-height: 30px; padding: 5px 12px; border: 1px solid rgba(255,255,255,.34); border-radius: 999px; color: white; font-size: .83rem; font-weight: 700; }
+      nav { display: flex; gap: 6px; overflow-x: auto; padding: 12px 18px; background: #073d56; }
+      nav a { flex: 0 0 auto; padding: 6px 10px; border-radius: 6px; color: #e7f5f6; font-size: .83rem; text-decoration: none; }
+      nav a:hover { background: rgba(255,255,255,.12); }
+      main { padding: 34px 44px 46px; background: var(--paper); }
+      section { margin-top: 40px; scroll-margin-top: 18px; }
+      .section-kicker { margin: 0 0 5px; color: var(--brand-2); font-size: .78rem; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; }
+      h2 { margin: 0; font-size: 1.7rem; line-height: 1.2; letter-spacing: -.02em; }
+      h3 { margin: 0; font-size: 1.05rem; line-height: 1.3; }
+      .lede { max-width: 850px; margin: 10px 0 0; color: var(--muted); }
+      .grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 14px; margin-top: 20px; }
+      .goal-card { min-height: 164px; padding: 17px; border: 1px solid var(--line); border-radius: 14px; background: #fff; }
+      .goal-number { display: block; margin-bottom: 8px; color: var(--brand-2); font-size: .8rem; font-weight: 800; }
+      .goal-card p { margin: 8px 0 0; color: var(--muted); font-size: .88rem; line-height: 1.38; }
+      .badge { display: inline-block; margin-top: 11px; padding: 3px 8px; border-radius: 999px; font-size: .72rem; font-weight: 800; }
+      .good { background: var(--mint); color: #08745a; }
+      .warn { background: var(--amber); color: #8a5e00; }
+      .pending { background: var(--sky); color: #175a91; }
+      .intro-note { margin-top: 22px; padding: 16px 18px; border-left: 4px solid var(--brand-2); background: #f1fafb; color: #305064; }
+      .metric-row { display: grid; grid-template-columns: 1.1fr 1fr; gap: 18px; margin-top: 20px; }
+      .metric-card, .evidence-card, .action-card { padding: 21px; border: 1px solid var(--line); border-radius: 14px; }
+      .metric-card { background: #f8fcfc; }
+      .metric { margin: 6px 0 2px; color: var(--brand); font-size: 3.4rem; font-weight: 800; letter-spacing: -.06em; line-height: 1; }
+      .metric-card p { margin: 9px 0 0; color: var(--muted); }
+      .ratio-table { width: 100%; margin-top: 14px; border-collapse: collapse; font-size: .93rem; }
+      .ratio-table th, .ratio-table td { padding: 10px 8px; border-bottom: 1px solid var(--line); text-align: left; vertical-align: top; }
+      .ratio-table th { color: var(--muted); font-size: .75rem; letter-spacing: .05em; text-transform: uppercase; }
+      .ratio { font-weight: 800; white-space: nowrap; }
+      .evidence-list { display: grid; gap: 12px; margin-top: 20px; }
+      .evidence-card { display: grid; grid-template-columns: 145px 1fr auto; gap: 18px; align-items: start; }
+      .evidence-label { color: var(--brand); font-size: .8rem; font-weight: 800; letter-spacing: .06em; text-transform: uppercase; }
+      .evidence-card p { margin: 6px 0 0; color: var(--muted); }
+      .evidence-card .badge { margin-top: 0; }
+      .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; margin-top: 20px; }
+      .action-card h3 { color: var(--brand); }
+      .action-card ul { margin: 12px 0 0; padding-left: 20px; color: var(--muted); }
+      .action-card li + li { margin-top: 7px; }
+      .close { margin-top: 42px; padding: 26px; border-radius: 16px; color: #eaf8f9; background: #073d56; }
+      .close h2 { color: white; }
+      .close p { margin: 9px 0 0; color: #bde4e8; }
+      footer { padding-top: 24px; color: var(--muted); font-size: .82rem; }
+      @media (max-width: 840px) {
+        .page { padding: 0; }
+        .hero, main { border-radius: 0; padding: 30px 22px; }
+        .grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+        .metric-row, .two-col { grid-template-columns: 1fr; }
+        .evidence-card { grid-template-columns: 1fr; gap: 8px; }
+      }
+      @media (max-width: 480px) { .grid { grid-template-columns: 1fr; } }
+      @media print {
+        body { background: white; font-size: 10pt; }
+        .page { max-width: none; padding: 0; }
+        .hero { border-radius: 0; padding: 18px 28px; }
+        .hero h1 { font-size: 2.25rem; }
+        .hero .subtitle { margin-top: 9px; font-size: .95rem; }
+        .hero-meta { margin-top: 14px; }
+        .hero .pill { min-height: 24px; padding: 3px 9px; font-size: .72rem; }
+        main { padding: 14px 28px 22px; }
+        nav { display: none; }
+        section { break-inside: auto; }
+        a { color: inherit; text-decoration: none; }
+        .goal-card, .metric-card, .evidence-card, .action-card { break-inside: avoid; }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="page">
+      <header class="hero">
+        <p class="eyebrow">SOIN GROW 2026 · Seguimiento de objetivos</p>
+        <h1>Luis Emmanuel Alfaro</h1>
+        <p class="subtitle">Presento mi avance, las evidencias que ya localicé y las acciones que completaré para validar cada objetivo del período.</p>
+        <div class="hero-meta">
+          <span class="pill">Corte: 23 de septiembre de 2026</span>
+          <span class="pill">Rol: Frontend Developer</span>
+          <span class="pill">Evidencia: commits, PRs, métricas y pruebas</span>
+        </div>
+      </header>
+      <nav aria-label="Navegación del informe">
+        <a href="#resumen">Resumen</a><a href="#ai-first">AI-First</a><a href="#productividad">Productividad</a><a href="#hexagon">Hexagon</a><a href="#arquitectura">Arquitectura</a><a href="#optimizacion">Optimización</a><a href="#pruebas">Pruebas</a><a href="#transferencia">Transferencia</a>
+      </nav>
+      <main>
+        <section id="resumen">
+          <p class="section-kicker">Vista general</p>
+          <h2>Estado de mis ocho objetivos</h2>
+          <p class="lede">Distingo evidencia localizada de cumplimiento validado. No marco un objetivo como cumplido hasta completar la condición de cierre correspondiente.</p>
+          <div class="grid">
+            <article class="goal-card"><span class="goal-number">01 · AI-First</span><h3>Productividad 3x</h3><p>Identifiqué tres casos que superan 3x según mis estimaciones: FrontRoulette, el calendario de SIGES Web y DynamicForms.</p><span class="badge good">3 casos estimados ≥3x</span></article>
+            <article class="goal-card"><span class="goal-number">02 · Productividad</span><h3>Tiempo productivo</h3><p>Mi indicador semanal registra 96% de tiempo productivo.</p><span class="badge good">Evidencia disponible</span></article>
+            <article class="goal-card"><span class="goal-number">03 · Hexagon</span><h3>Componentes prioritarios</h3><p>Entregué tres candidatos. Falta contrastarlos con backlog y aceptación.</p><span class="badge pending">Pendiente validar</span></article>
+            <article class="goal-card"><span class="goal-number">04 · Reutilización</span><h3>Arquitectura frontend</h3><p>Implementé una base reutilizable en cuatro flujos de wizard.</p><span class="badge pending">Evidencia candidata</span></article>
+            <article class="goal-card"><span class="goal-number">05 · Activos</span><h3>AI-First reutilizable</h3><p>Preparé tres candidatos documentales. Falta consolidar su reuso.</p><span class="badge pending">Pendiente seleccionar 3</span></article>
+            <article class="goal-card"><span class="goal-number">06 · Rendimiento</span><h3>Flujos críticos</h3><p>Optimicé Home, Companies y Contracts. Falta medir antes y después.</p><span class="badge pending">Pendiente medir</span></article>
+            <article class="goal-card"><span class="goal-number">07 · Calidad</span><h3>Pruebas frontend</h3><p>Localicé más de 20 archivos de pruebas. Falta reporte de ejecución.</p><span class="badge pending">Evidencia candidata</span></article>
+            <article class="goal-card"><span class="goal-number">08 · Transferencia</span><h3>Prácticas AI-First</h3><p>Preparé el kit de sesiones para dos desarrolladores.</p><span class="badge warn">Pendiente ejecutar</span></article>
+          </div>
+          <p class="intro-note">Mis enlaces a commits y PRs demuestran cambios y autoría. Para cerrar cada objetivo adjuntaré también las métricas, capturas, reportes de pruebas, validaciones o PRs de participantes que correspondan.</p>
+        </section>
+
+        <section id="ai-first">
+          <p class="section-kicker">Objetivo 1</p>
+          <h2>AI-First y productividad comparable</h2>
+          <div class="metric-row">
+            <article class="metric-card"><p>Casos con umbral estimado ≥3x</p><div class="metric">3 / 3</div><p>FrontRoulette: ≥5x. Calendario SIGES Web: 3.5x. DynamicForms: 5x.</p></article>
+            <article class="metric-card"><h3>Alcance de la comparación</h3><p>Los tiempos corresponden únicamente a la finalización de cada dinámica. Excluyo cambios posteriores solicitados durante su operación.</p><p>Confirmaré las estimaciones con ticket, calendario o validación de mi jefatura.</p></article>
+          </div>
+          <table class="ratio-table"><thead><tr><th>Caso</th><th>Tiempo sin IA</th><th>Tiempo con IA</th><th>Resultado</th></tr></thead><tbody>
+            <tr><td><a href="https://github.com/foxdieCR/TappWeb/commit/3f41764340dd072f0648102ea53e4454ad727c75" target="_blank" rel="noopener noreferrer">FrontRoulette</a></td><td>Mínimo 5 días</td><td>1 día</td><td class="ratio">≥5x · Cuenta</td></tr>
+            <tr><td><a href="https://github.com/foxdieCR/TappWeb/commit/fdb39bb96a4ab046ba6d3508bc808188ec8ee59e" target="_blank" rel="noopener noreferrer">Television Raffle</a></td><td>Mínimo 10 días</td><td>5 días</td><td class="ratio">≥2x · No cuenta aún</td></tr>
+            <tr><td><a href="https://github.com/foxdieCR/TappWeb/commit/c761806612d0fd4f44ae1e22db576a2ad1d01958" target="_blank" rel="noopener noreferrer">ResponsiveRoulette</a></td><td>25 días</td><td>15 días</td><td class="ratio">1.67x · No cuenta aún</td></tr>
+            <tr><td><a href="https://github.com/foxdieCR/sigesWeb/commit/55dee03b7e463a8b1010cfba1cb5efd443534bd7" target="_blank" rel="noopener noreferrer">Calendario SIGES Web (`src/components/calendar/index.tsx`)</a></td><td>Estimado 7 días</td><td>2 días</td><td class="ratio">3.5x estimado</td></tr>
+            <tr><td><a href="https://github.com/foxdieCR/sigesWeb/commit/32d4aa3405ca1afe919402689cc7732dbf9b12f7" target="_blank" rel="noopener noreferrer">DynamicForms (`src/components/dynamicForms/index.tsx`)</a></td><td>Estimado 10 días</td><td>2 días</td><td class="ratio">5x estimado</td></tr>
+          </tbody></table>
+          <p class="lede">Para el calendario, estimo 7 días sin IA y 2 días con IA. Para DynamicForms, estimo 10 días sin IA y 2 días con IA. Estas dos comparaciones son estimadas; las respaldaré con tickets, calendario o validación de mi jefatura.</p>
+        </section>
+
+        <section id="productividad">
+          <p class="section-kicker">Objetivo 2</p><h2>Tiempo productivo</h2>
+          <div class="metric-row"><article class="metric-card"><p>Indicador semanal</p><div class="metric">96%</div><p>Tiempo productivo. Mi histórico de enero a agosto se mantiene entre 91% y 100%.</p></article><article class="metric-card"><h3>Distribución actual</h3><p><strong>Productivas:</strong> 96%<br><strong>Administrativas:</strong> 4%<br><strong>Otras:</strong> 0%</p><p>Adjuntaré la captura original como <code>02_indicador_semanal.png</code>.</p></article></div>
+        </section>
+
+        <section id="hexagon"><p class="section-kicker">Objetivos 3, 4 y 5</p><h2>Componentes, arquitectura y activos reutilizables</h2><div class="evidence-list">
+          <article class="evidence-card"><div class="evidence-label">Objetivo 3</div><div><h3>Componentes prioritarios de Hexagon</h3><p>Entregué sugerencias AI para prompt layers, monitoreo y auditoría de tools, y connection profiles. Asociaré estos entregables al backlog prioritario aprobado y a su aceptación integrada.</p></div><span class="badge pending">PR 385 · 439 · 334</span></article>
+          <article class="evidence-card"><div class="evidence-label">Objetivo 4</div><div><h3>Arquitectura reusable de wizard</h3><p>Implementé una base común de navegación, validación y pie de wizard. La reutilicé en Agent, Tool, API y Connection Profile; adjuntaré capturas o demo de tres flujos del período.</p></div><span class="badge pending">4 flujos candidatos</span></article>
+          <article class="evidence-card"><div class="evidence-label">Objetivo 5</div><div><h3>Activos AI-First reutilizables</h3><p>Preparé como candidatos la guía Agentic First Focus, la propuesta de sugerencias AI y el resumen de monitoreo. Completaré propietario, instrucciones y un ejemplo de uso por activo.</p></div><span class="badge pending">Pendiente seleccionar 3</span></article>
+        </div></section>
+
+        <section id="optimizacion"><p class="section-kicker">Objetivo 6</p><h2>Optimización de flujos críticos</h2><p class="lede">Implementé tres mejoras técnicas en SIGES Web. Para validarlas, adjuntaré una captura, medición de Network o evidencia antes/después, además de explicar el uso real de IA.</p><div class="evidence-list">
+          <article class="evidence-card"><div class="evidence-label">Home</div><div><h3>Carga progresiva de tarjetas</h3><p>Eliminé la espera conjunta de contadores. Ahora las tarjetas se muestran y cada contador actualiza su resultado de forma individual.</p><a href="https://github.com/foxdieCR/sigesWeb/commit/fc237cffa789bb2248674a9732bec395d637f00a" target="_blank" rel="noopener noreferrer">Ver commit</a></div><span class="badge pending">Falta captura / métrica</span></article>
+          <article class="evidence-card"><div class="evidence-label">Companies</div><div><h3>Búsqueda paginada y debounce</h3><p>Sustituí la carga completa y filtro local por consulta remota paginada. La búsqueda espera 300 ms desde la última tecla.</p><a href="https://github.com/foxdieCR/sigesWeb/commit/b6ce0c6894ea5cc573547cd0c1323686c8d6d00f" target="_blank" rel="noopener noreferrer">Ver commit</a></div><span class="badge pending">Falta Network / métrica</span></article>
+          <article class="evidence-card"><div class="evidence-label">Contracts</div><div><h3>Búsqueda con debounce</h3><p>Implementé una espera de 1 segundo antes de enviar la búsqueda, para evitar una solicitud por cada pulsación.</p><a href="https://github.com/foxdieCR/sigesWeb/commit/987ecb27ea0e42f1a55bbb2cafbb24577e2930e6" target="_blank" rel="noopener noreferrer">Ver commit</a></div><span class="badge pending">Falta Network / métrica</span></article>
+        </div></section>
+
+        <section id="pruebas"><p class="section-kicker">Objetivo 7</p><h2>Pruebas frontend</h2><div class="two-col"><article class="action-card"><h3>Inventario localizado</h3><p>Localicé más de 20 archivos de pruebas asociados a los PRs de sugerencias AI y monitoreo de tools.</p><ul><li>Pruebas de UI, API, controller, route y services.</li><li>Auditoría, filtros, detalle y eventos de monitoreo.</li></ul></article><article class="action-card"><h3>Condición de cierre</h3><p>Ejecutaré la suite aplicable y adjuntaré su reporte, confirmando que los escenarios pertenecen al período de evaluación.</p></article></div></section>
+
+        <section id="transferencia"><p class="section-kicker">Objetivo 8</p><h2>Transferencia de prácticas frontend y AI-First</h2><div class="two-col"><article class="action-card"><h3>Lo que prepararé</h3><ul><li>Dos sesiones de 60 minutos.</li><li>Descomposición AI-First e implementación asistida.</li><li>Pruebas, documentación y evidencia.</li></ul></article><article class="action-card"><h3>Cómo demostraré el resultado</h3><ul><li>Dos participantes identificados.</li><li>Tres prácticas aplicadas por cada persona.</li><li>PRs o entregables reales, pruebas y minuta.</li></ul></article></div></section>
+
+        <section class="close"><h2>Próximos pasos</h2><p>Confirmaré dos casos AI-First adicionales ≥3x, adjuntaré la captura del indicador semanal, validaré el backlog de Hexagon, mediré los tres flujos de SIGES, ejecutaré las pruebas aplicables y completaré la transferencia con dos desarrolladores.</p></section>
+        <footer>Documento de seguimiento personal · SOIN GROW 2026 · Luis Emmanuel Alfaro</footer>
+      </main>
+    </div>
+  </body>
+</html>
